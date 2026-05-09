@@ -13,8 +13,9 @@ const userRoutes = require("./routes/user");
 const app = express();
 const port = process.env.PORT || 8001;
 
-connectToMongoDB('mongodb://localhost:27017/Shortener_url')
-.then(() => console.log("Connected MongoDB"));
+connectToMongoDB(process.env.MONGO_URL)
+.then(() => console.log("Connected MongoDB"))
+.catch((err) => console.log("MongoDB connection error:", err));
 
 app.set("view engine", "ejs");  // view engin
 app.set("views", path.resolve("./views"));   // views folder
